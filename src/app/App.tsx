@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { AnimatePresence } from "motion/react";
+import { Analytics } from "@vercel/analytics/react";
 import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
 import { About } from "./components/About";
@@ -18,6 +19,7 @@ export default function App() {
   return (
     <div className="bg-dark min-h-screen text-white font-sans selection:bg-accent-purple/30 selection:text-white cursor-none">
       <CustomCursor />
+      <Analytics />
       
       <AnimatePresence mode="wait">
         {loading && <LoadingScreen key="loading" onComplete={() => setLoading(false)} />}
