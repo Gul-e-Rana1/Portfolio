@@ -120,7 +120,7 @@ export function Projects() {
                 </div>
                 
                 {(project.hasLinks || project.liveUrl || project.githubUrl) && (
-                  <div className="flex items-center gap-4 pt-6">
+                  <div className="flex flex-wrap items-center gap-4 pt-6">
                     {(project.liveUrl || project.hasLinks) && (
                       project.liveUrl ? (
                       <a

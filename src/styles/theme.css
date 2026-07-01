@@ -17,9 +17,17 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    width: 100%;
+    overflow-x: clip;
   }
   body {
     @apply bg-dark text-white font-sans antialiased overflow-x-hidden selection:bg-accent-purple/30 selection:text-white cursor-none;
+    width: 100%;
+  }
+
+  #root {
+    width: 100%;
+    overflow-x: clip;
   }
   
   a, button, [role="button"] {

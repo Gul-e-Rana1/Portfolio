@@ -62,7 +62,7 @@ export function Experience() {
                   <Briefcase className="w-5 h-5 text-accent-purple" />
                 </div>
 
-                <div className="ml-20 md:ml-0 w-full md:w-1/2 glass glass-hover p-8 rounded-3xl group">
+                <div className="ml-20 w-[calc(100%-5rem)] md:ml-0 md:w-1/2 glass glass-hover p-6 sm:p-8 rounded-3xl group">
                   <span className="text-accent-blue text-sm font-semibold tracking-wider uppercase mb-2 block">
                     {exp.period}
                   </span>
