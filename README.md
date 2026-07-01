@@ -1,4 +1,4 @@
-# Gul-e-Rana Portfolio
+# Portfolio
 
 This repository contains a personal portfolio website built to showcase Gul-e-Rana's profile, skills, projects, and contact information.
 
