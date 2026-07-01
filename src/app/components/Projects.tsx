@@ -2,7 +2,18 @@ import { motion } from "motion/react";
 import { Github, ExternalLink } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
-const projects = [
+type Project = {
+  title: string;
+  description: string;
+  tech: string[];
+  image: string;
+  hasLinks?: boolean;
+  liveUrl?: string;
+  githubUrl?: string;
+  isPlaceholder?: boolean;
+};
+
+const projects: Project[] = [
   {
     title: "Deep Fake Detection System",
     description: "An AI-powered deepfake detection platform developed using React.js, Flask, and MySQL to identify manipulated facial media.",
@@ -11,11 +22,25 @@ const projects = [
     hasLinks: true
   },
   {
-    title: "Nano Web Tools",
-    description: "A modern collection of responsive web utilities with enhanced UI/UX improvements and optimized performance.",
-    tech: ["React", "Tailwind CSS", "JavaScript", "Vite"],
+    title: "SlackBot Platform",
+    description: "A modern AI-powered SlackBot interface developed with responsive UI components, seamless API integration, and an optimized user experience for workplace automation.",
+    tech: ["React", "Tailwind CSS", "REST APIs", "Responsive UI"],
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjByZXNwb25zaXZlJTIwZGFzaGJvYXJkJTIwdWklMjB3ZWIlMjBkZXNpZ258ZW58MXx8fHwxNzgyNzM3MTI4fDA&ixlib=rb-4.1.0&q=80&w=1080",
-    hasLinks: true
+    liveUrl: "https://app.meta360.dev/"
+  },
+  {
+    title: "Handwritten Digit Recognition",
+    description: "An AI-powered computer vision application that identifies handwritten digits from uploaded images using a custom-trained deep learning model. Developed as a one-page Streamlit application with complete model training, integration, and real-time inference.",
+    tech: ["Python", "Computer Vision", "Deep Learning", "Streamlit"],
+    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080",
+    hasLinks: false
+  },
+  {
+    title: "Envoice",
+    description: "A scalable invoicing and business management platform featuring responsive interfaces, reusable components, and efficient frontend architecture for a seamless user experience.",
+    tech: ["React", "Ant Design", "Laravel", "Tailwind CSS"],
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080",
+    hasLinks: false
   },
   {
     title: "Personal Portfolio",
@@ -94,16 +119,44 @@ export function Projects() {
                   ))}
                 </div>
                 
-                {project.hasLinks && (
+                {(project.hasLinks || project.liveUrl || project.githubUrl) && (
                   <div className="flex items-center gap-4 pt-6">
-                    <button className="flex items-center gap-2 px-5 py-2.5 rounded-full glass hover:bg-white hover:text-dark transition-colors font-medium">
-                      <ExternalLink className="w-4 h-4" />
-                      <span>Live Demo</span>
-                    </button>
-                    <button className="flex items-center gap-2 px-5 py-2.5 rounded-full text-text-muted hover:text-white transition-colors">
-                      <Github className="w-5 h-5" />
-                      <span>GitHub</span>
-                    </button>
+                    {(project.liveUrl || project.hasLinks) && (
+                      project.liveUrl ? (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex items-center gap-2 px-5 py-2.5 rounded-full glass hover:bg-white hover:text-dark transition-colors font-medium"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                        <span>Live Demo</span>
+                      </a>
+                      ) : (
+                        <button className="flex items-center gap-2 px-5 py-2.5 rounded-full glass hover:bg-white hover:text-dark transition-colors font-medium">
+                          <ExternalLink className="w-4 h-4" />
+                          <span>Live Demo</span>
+                        </button>
+                      )
+                    )}
+                    {(project.githubUrl || project.hasLinks) && (
+                      project.githubUrl ? (
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="flex items-center gap-2 px-5 py-2.5 rounded-full text-text-muted hover:text-white transition-colors"
+                        >
+                          <Github className="w-5 h-5" />
+                          <span>GitHub</span>
+                        </a>
+                      ) : (
+                        <button className="flex items-center gap-2 px-5 py-2.5 rounded-full text-text-muted hover:text-white transition-colors">
+                          <Github className="w-5 h-5" />
+                          <span>GitHub</span>
+                        </button>
+                      )
+                    )}
                   </div>
                 )}
               </div>
