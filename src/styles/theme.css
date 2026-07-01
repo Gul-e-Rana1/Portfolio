@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --color-dark: #090909;
+  --color-accent-blue: #3b82f6;
+  --color-accent-purple: #8b5cf6;
+  --color-surface: rgba(255, 255, 255, 0.03);
+  --color-surface-hover: rgba(255, 255, 255, 0.08);
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-text-muted: rgba(255, 255, 255, 0.6);
+  --font-sans: 'Satoshi', sans-serif;
+  --font-heading: 'General Sans', sans-serif;
+  
+  --radius-xl: 24px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-dark text-white font-sans antialiased overflow-x-hidden selection:bg-accent-purple/30 selection:text-white cursor-none;
+  }
+  
+  a, button, [role="button"] {
+    @apply cursor-none;
+  }
+
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-surface backdrop-blur-xl border border-border;
+  }
+  .glass-hover {
+    @apply hover:bg-surface-hover hover:border-accent-purple/30 transition-all duration-300;
+  }
+  .text-glow {
+    text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+  }
+  .bg-glow {
+    @apply absolute blur-[100px] rounded-full opacity-30 pointer-events-none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .grid-pattern {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .section-num {
+    @apply text-xs font-semibold tracking-[0.3em] uppercase text-text-muted mb-3 block;
+  }
+}
