@@ -2,9 +2,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
-const navItems = [
-  "Home", "About", "Skills", "Projects", "Experience", "Education", "Achievements", "Contact"
-];
+const navItems = ["Projects", "Experience", "Skills", "Contact"];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -43,9 +41,10 @@ export function Navbar() {
           }`}>
             <button
               onClick={() => scrollTo("Home")}
-              className="text-xl font-heading font-bold tracking-wider"
+              className="flex items-center"
+              aria-label="Go to home"
             >
-              G<span className="text-accent-purple">R</span>.
+              <img src="/logo.png" alt="Gul-e-Rana logo" className="h-14 w-14 object-contain" />
             </button>
 
             <div className="hidden md:flex items-center space-x-1">
@@ -81,8 +80,8 @@ export function Navbar() {
             transition={{ duration: 0.25 }}
             className="fixed inset-0 z-40 bg-dark/98 backdrop-blur-2xl flex flex-col items-center justify-center"
           >
-            <div className="text-4xl font-heading font-bold tracking-wider mb-16 text-white/20">
-              G<span className="text-accent-purple">R</span>.
+            <div className="mb-16">
+              <img src="/logo.png" alt="Gul-e-Rana logo" className="h-20 w-20 object-contain" />
             </div>
             <nav className="flex flex-col items-center gap-1">
               {navItems.map((item, i) => (

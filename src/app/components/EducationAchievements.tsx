@@ -1,17 +1,30 @@
 import { motion } from "motion/react";
 import { GraduationCap, Award } from "lucide-react";
 
-const coursework = [
-  "Web Development", "Database Systems", "Software Engineering", 
-  "Artificial Intelligence", "Data Structures & Algorithms"
+const educationCards = [
+  {
+    title: "Bachelor of Science in Computer Science",
+    subtitle: "Quaid-i-Azam University, Islamabad",
+    detail: "CGPA: 3.7 / 4.0",
+    extra: "2021 – 2025"
+  },
+  {
+    title: "ICS",
+    subtitle: "IMCG (P.G.) F-7/4, Islamabad",
+    detail: "Grade A",
+    extra: ""
+  }
 ];
 
-const achievements = [
-  { title: "Programming Certifications", desc: "Advanced React Patterns & Python Data Structures" },
-  { title: "Hackathons", desc: "1st Place - University AI Innovation Hackathon 2025" },
-  { title: "Academic Achievements", desc: "Dean's List for 4 consecutive semesters" },
-  { title: "Workshops", desc: "Led 'Intro to Modern Web Dev' workshop for 100+ students" },
-  { title: "Technical Training", desc: "AWS Cloud Practitioner & MongoDB Developer certified" }
+const achievementCards = [
+  {
+    title: "Certifications",
+    desc: "NAVTTC – Artificial Intelligence • NAVTTC – Data Science • NAVTTC – Blockchain • Grade: A+ • Microsoft Power BI (Udemy) • ACT AI Training (Currently Enrolled)"
+  },
+  {
+    title: "Academic Achievement",
+    desc: "Secured 3rd Position in the ICT Department during my BS at Quaid-i-Azam University."
+  }
 ];
 
 export function EducationAchievements() {
@@ -34,35 +47,31 @@ export function EducationAchievements() {
             <div className="w-20 h-1 bg-gradient-to-r from-accent-purple to-accent-blue rounded-full" />
           </motion.div>
 
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="glass p-8 md:p-12 rounded-3xl relative overflow-hidden"
-          >
-            <div className="absolute top-0 right-0 w-64 h-64 bg-accent-blue/10 blur-[80px] rounded-full" />
-            
-            <div className="flex items-start gap-6 relative z-10">
-              <div className="w-16 h-16 rounded-2xl glass flex items-center justify-center shrink-0 border-accent-blue/30">
-                <GraduationCap className="w-8 h-8 text-accent-blue" />
-              </div>
-              
-              <div>
-                <h3 className="text-2xl md:text-3xl font-bold mb-2">Bachelor of Science in Computer Science</h3>
-                <p className="text-text-muted text-lg mb-8">Graduated with Honors</p>
-                
-                <h4 className="text-white font-medium mb-4">Relevant Coursework:</h4>
-                <div className="flex flex-wrap gap-3">
-                  {coursework.map((course, i) => (
-                    <span key={i} className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm hover:border-accent-blue/50 transition-colors cursor-default">
-                      {course}
-                    </span>
-                  ))}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {educationCards.map((item, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                className="glass p-8 md:p-10 rounded-3xl relative overflow-hidden"
+              >
+                <div className="absolute top-0 right-0 w-64 h-64 bg-accent-blue/10 blur-[80px] rounded-full" />
+                <div className="flex items-start gap-6 relative z-10">
+                  <div className="w-16 h-16 rounded-2xl glass flex items-center justify-center shrink-0 border-accent-blue/30">
+                    <GraduationCap className="w-8 h-8 text-accent-blue" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl md:text-3xl font-bold mb-2">{item.title}</h3>
+                    <p className="text-white/80 font-medium mb-2">{item.subtitle}</p>
+                    <p className="text-text-muted mb-2">{item.detail}</p>
+                    {item.extra && <p className="text-text-muted">{item.extra}</p>}
+                  </div>
                 </div>
-              </div>
-            </div>
-          </motion.div>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* Achievements Section */}
@@ -78,8 +87,8 @@ export function EducationAchievements() {
             <div className="w-20 h-1 bg-gradient-to-r from-accent-purple to-accent-blue rounded-full" />
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {achievements.map((item, idx) => (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {achievementCards.map((item, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}

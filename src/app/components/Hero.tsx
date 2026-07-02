@@ -18,7 +18,7 @@ const floatingBadges = [
 ];
 
 const stats = [
-  { value: "3+",  label: "Projects" },
+  { value: "10+", label: "Projects" },
   { value: "10+", label: "Technologies" },
   { value: "2025", label: "CS Graduate" },
 ];
@@ -46,16 +46,6 @@ export function Hero() {
             transition={{ duration: 1, delay: 0.2 }}
             className="space-y-8"
           >
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full border border-accent-purple/30 bg-accent-purple/10 text-accent-purple text-sm font-medium"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-accent-purple animate-pulse" />
-              Computer Science Graduate
-            </motion.div>
-
             <h1 className="text-6xl md:text-7xl xl:text-8xl font-bold leading-[1.05] tracking-tight">
               Hi, I'm <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-200 to-accent-purple text-glow">
@@ -64,7 +54,7 @@ export function Hero() {
             </h1>
 
             <p className="text-lg md:text-xl text-text-muted max-w-lg leading-relaxed">
-              Full Stack Developer crafting modern, scalable, and user-focused digital experiences.
+              Full Stack Developer & AI/ML Enthusiast crafting modern, scalable, and intelligent digital solutions with a focus on performance, user experience, and real-world impact.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 pt-2">
@@ -77,8 +67,8 @@ export function Hero() {
               </button>
 
               <a
-                href="/resume.pdf"
-                download
+                href="/Gul-eRana-CV.pdf"
+                download="Gul-eRana-CV.pdf"
                 className="flex items-center gap-2 px-8 py-4 glass glass-hover rounded-full text-white font-medium transition-all hover:scale-105"
               >
                 <Download className="w-4 h-4" />
