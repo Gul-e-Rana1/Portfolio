@@ -27,9 +27,15 @@ const skills = [
   },
   {
     num: "05",
+    category: "AI / Machine Learning & Data Science",
+    items: ["AI/ML", "Python", "Model Training", "AI Integration", "Bot Development", "Data Analysis & Visualization"],
+    color: "#f472b6",
+  },
+  {
+    num: "06",
     category: "Soft Skills",
     items: ["Problem Solving", "Communication", "Team Collaboration", "Critical Thinking"],
-    color: "#f472b6",
+    color: "#fb923c",
   },
 ];
 
@@ -60,9 +66,7 @@ export function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, duration: 0.5 }}
-              className={`glass glass-hover p-8 rounded-3xl relative overflow-hidden group ${
-                idx === 3 ? "lg:col-span-2 lg:col-start-1" : ""
-              } ${idx === 4 ? "lg:col-span-1 lg:col-start-3" : ""}`}
+              className="glass glass-hover p-8 rounded-3xl relative overflow-hidden group"
             >
               {/* Colored top accent line */}
               <div

@@ -15,46 +15,45 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: "Deep Fake Detection System",
+    title: "Deep Fake Detection System (FYP)",
     description: "An AI-powered deepfake detection platform developed using React.js, Flask, and MySQL to identify manipulated facial media.",
-    tech: ["React.js", "Flask", "MySQL", "Python", "AI/ML"],
+    tech: ["React.js", "Flask", "MySQL", "Python", "AI/ML", "QA"],
     image: "https://images.unsplash.com/photo-1696272440000-0808a203c852?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlJTIwZGVlcGZha2UlMjBmYWNlJTIwbWVzaCUyMHRlY2hub2xvZ3l8ZW58MXx8fHwxNzgyNzM3MTI4fDA&ixlib=rb-4.1.0&q=80&w=1080",
-    hasLinks: true
+    githubUrl: "https://github.com/Gul-e-Rana1/DFD"
   },
   {
     title: "SlackBot Platform",
     description: "A modern AI-powered SlackBot interface developed with responsive UI components, seamless API integration, and an optimized user experience for workplace automation.",
-    tech: ["React", "Tailwind CSS", "REST APIs", "Responsive UI"],
+    tech: ["React", "Tailwind CSS", "REST APIs", "Responsive UI", "QA"],
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjByZXNwb25zaXZlJTIwZGFzaGJvYXJkJTIwdWklMjB3ZWIlMjBkZXNpZ258ZW58MXx8fHwxNzgyNzM3MTI4fDA&ixlib=rb-4.1.0&q=80&w=1080",
     liveUrl: "https://app.meta360.dev/"
   },
   {
     title: "Handwritten Digit Recognition",
     description: "An AI-powered computer vision application that identifies handwritten digits from uploaded images using a custom-trained deep learning model. Developed as a one-page Streamlit application with complete model training, integration, and real-time inference.",
-    tech: ["Python", "Computer Vision", "Deep Learning", "Streamlit"],
+    tech: ["Python", "Computer Vision", "Deep Learning", "Streamlit", "QA"],
     image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080",
-    hasLinks: false
+    githubUrl: "https://github.com/Gul-e-Rana1/Digit_Recognition"
   },
   {
     title: "Envoice",
     description: "A scalable invoicing and business management platform featuring responsive interfaces, reusable components, and efficient frontend architecture for a seamless user experience.",
-    tech: ["React", "Ant Design", "Laravel", "Tailwind CSS"],
-    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080",
-    hasLinks: false
+    tech: ["React", "Ant Design", "Laravel", "Tailwind CSS", "QA"],
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080"
   },
   {
     title: "Personal Portfolio",
     description: "A premium animated portfolio built with React, Framer Motion, and modern web technologies to showcase professional work.",
-    tech: ["React", "Framer Motion", "Tailwind CSS", "Design System"],
+    tech: ["React", "Framer Motion", "Tailwind CSS", "Design System", "QA"],
     image: "https://images.unsplash.com/photo-1559028012-481c04fa702d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcmVhdGl2ZSUyMGNvZGluZyUyMGFuaW1hdGlvbiUyMHBvcnRmb2xpbyUyMHdlYiUyMGRldmVsb3BtZW50fGVufDF8fHx8MTc4MjczNzEyOHww&ixlib=rb-4.1.0&q=80&w=1080",
-    hasLinks: true
+    liveUrl: "https://gul-e-rana.vercel.app",
+    githubUrl: "https://github.com/Gul-e-Rana1/Portfolio"
   },
   {
     title: "Upcoming Project",
     description: "Currently ideating and developing a new scalable digital solution. Stay tuned for updates on this space.",
-    tech: ["Innovation", "Research", "Development"],
+    tech: ["Innovation", "Research", "Development", "QA"],
     image: "",
-    hasLinks: false,
     isPlaceholder: true
   }
 ];
