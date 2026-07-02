@@ -32,11 +32,11 @@ export function Navbar() {
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-3xl bg-slate-950/10 ${
-          scrolled ? "py-3" : "py-5"
+          scrolled ? "py-2" : "py-3"
         }`}
       >
         <div className="container mx-auto px-6 max-w-7xl">
-          <div className={`flex items-center justify-between rounded-full px-6 py-3 transition-all duration-300 ${
+          <div className={`flex items-center justify-between rounded-full px-6 py-2 transition-all duration-300 ${
             scrolled ? "glass" : "bg-transparent"
           }`}>
             <button
@@ -44,7 +44,7 @@ export function Navbar() {
               className="flex items-center"
               aria-label="Go to home"
             >
-              <img src="/logo.png" alt="Gul-e-Rana logo" className="h-14 w-14 object-contain" />
+              <img src="/logo.png" alt="Gul-e-Rana logo" className="h-12 w-12 object-contain" />
             </button>
 
             <div className="hidden md:flex items-center space-x-1">

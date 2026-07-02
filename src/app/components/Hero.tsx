@@ -28,7 +28,7 @@ export function Hero() {
     document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20">
+    <section id="home" className="relative min-h-screen flex items-center pt-16 sm:pt-20">
       {/* Background effects – clipped so they don't affect layout */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="bg-glow w-[600px] h-[600px] bg-accent-purple/20 top-[-100px] left-[-100px]" />
@@ -46,14 +46,14 @@ export function Hero() {
             transition={{ duration: 1, delay: 0.2 }}
             className="space-y-8"
           >
-            <h1 className="text-6xl md:text-7xl xl:text-8xl font-bold leading-[1.05] tracking-tight">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl xl:text-8xl font-bold leading-[1.05] tracking-tight">
               Hi, I'm <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-200 to-accent-purple text-glow">
                 Gul-e-Rana
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl text-text-muted max-w-lg leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-text-muted max-w-lg leading-relaxed">
               Full Stack Developer & AI/ML Enthusiast crafting modern, scalable, and intelligent digital solutions with a focus on performance, user experience, and real-world impact.
             </p>
 
