@@ -1,12 +1,14 @@
 import { motion } from "motion/react";
-import { CheckCircle2 } from "lucide-react";
 
 const highlights = [
-  "Computer Science Graduate",
   "Full Stack Development",
-  "AI & Machine Learning Projects",
-  "UI/UX Design Experience",
-  "Continuous Learning"
+  "AI/ML",
+  "Data Science",
+  "Problem Solving",
+  "Building scalable applications",
+  "Clean UI/UX",
+  "Passion for learning new technologies",
+  "Strong interest in real-world software solutions"
 ];
 
 export function About() {
@@ -26,9 +28,7 @@ export function About() {
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight">About Me</h2>
             <div className="w-20 h-1 bg-gradient-to-r from-accent-purple to-accent-blue rounded-full" />
             <p className="text-lg text-text-muted leading-relaxed font-light">
-              I am a passionate Computer Science graduate specializing in Full Stack Web Development. I have experience building modern, responsive, and scalable web applications using <span className="text-white font-medium">React.js, Flask, Laravel, MySQL</span>, and contemporary UI design principles. 
-              <br /><br />
-              I enjoy solving real-world problems through technology and creating digital products that are both efficient and visually engaging.
+              I am a driven Computer Science graduate and developer with a strong focus on Full Stack Development, AI/ML, and Data Science. I build scalable applications that combine robust backend systems, clean UI/UX, and practical problem-solving to deliver meaningful real-world software solutions. My work is shaped by a passion for learning new technologies, creating impactful digital experiences, and turning complex ideas into reliable, user-focused products.
             </p>
           </motion.div>
 

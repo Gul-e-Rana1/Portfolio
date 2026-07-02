@@ -5,26 +5,20 @@ const experiences = [
   {
     title: "Freelance Full Stack Developer",
     company: "Self-Employed",
-    period: "2024 - Present",
-    description: "Designing and developing premium web applications for diverse clients, focusing on scalable architecture, responsive UI, and seamless performance."
+    period: "June 2026 – Present",
+    description: "Delivering full stack development solutions for client projects with a strong focus on responsive applications, API integration, UI/UX, deployment, and testing."
   },
   {
-    title: "Software Engineering Intern",
-    company: "Tech Solutions Inc.",
-    period: "2023 - 2024",
-    description: "Collaborated with a cross-functional team to build internal dashboard tools using React and Node.js. Improved API response times by 20%."
+    title: "Full Stack Developer Intern",
+    company: "UExel Solutions Pvt. Ltd., Islamabad",
+    period: "November 2025 – May 2026",
+    description: "Worked with the latest stacks and modern technologies to build and improve applications through bug fixing, feature development, testing, collaboration, and Git-based workflows."
   },
   {
     title: "Personal Development Projects",
-    company: "Independent Learning",
-    period: "2022 - 2023",
-    description: "Built several comprehensive full-stack applications, exploring AI integrations, modern styling frameworks, and database optimizations."
-  },
-  {
-    title: "Professional Development Experience",
-    company: "University Programs",
-    period: "2021 - 2022",
-    description: "Participated in agile software development cycles, contributing to open source tools and leading university-level coding workshops."
+    company: "Independent Projects",
+    period: "2023 – Present",
+    description: "Built numerous projects involving full stack web development, AI/ML, computer vision, data science, modern frontend technologies, and backend development."
   }
 ];
 

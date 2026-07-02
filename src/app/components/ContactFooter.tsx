@@ -22,7 +22,7 @@ const links = [
   {
     icon: FileText,
     label: "Resume",
-    href: "/resume.pdf",
+    href: "/Gul-eRana-CV.pdf",
     download: true,
   },
 ];
