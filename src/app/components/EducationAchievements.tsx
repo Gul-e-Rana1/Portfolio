@@ -18,12 +18,17 @@ const educationCards = [
 
 const achievementCards = [
   {
-    title: "Certifications",
-    desc: "NAVTTC – Artificial Intelligence • NAVTTC – Data Science • NAVTTC – Blockchain • Grade: A+ • Microsoft Power BI (Udemy) • ACT AI Training (Currently Enrolled)"
+    title: "NAVTTC High Impact Training",
+    bullets: ["Artificial Intelligence", "Data Science", "Blockchain"]
   },
   {
-    title: "Academic Achievement",
-    desc: "Secured 3rd Position in the ICT Department during my BS at Quaid-i-Azam University."
+    title: "ACT AI Training Program",
+    info: "Awareness, Competency & Tools Training for AI",
+    desc: "A national initiative by AI Skillbridge in collaboration with HEC, Prime Minister's Youth Programme, and NAVTTC"
+  },
+  {
+    title: "Microsoft Power BI",
+    desc: "Udemy Course Certification"
   }
 ];
 
@@ -87,7 +92,7 @@ export function EducationAchievements() {
             <div className="w-20 h-1 bg-gradient-to-r from-accent-purple to-accent-blue rounded-full" />
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {achievementCards.map((item, idx) => (
               <motion.div
                 key={idx}
@@ -100,7 +105,17 @@ export function EducationAchievements() {
                 <div className="absolute -right-6 -top-6 w-24 h-24 bg-accent-purple/20 blur-2xl rounded-full group-hover:bg-accent-purple/40 transition-colors duration-500" />
                 <Award className="w-8 h-8 text-white/50 group-hover:text-accent-purple transition-colors mb-6 relative z-10" />
                 <h3 className="text-xl font-bold mb-3 relative z-10">{item.title}</h3>
-                <p className="text-text-muted relative z-10">{item.desc}</p>
+                {item.bullets && (
+                  <ul className="text-text-muted relative z-10 space-y-1 list-disc list-inside">
+                    {item.bullets.map((bullet, bIdx) => (
+                      <li key={bIdx}>{bullet}</li>
+                    ))}
+                  </ul>
+                )}
+                {item.info && (
+                  <p className="text-white/70 italic text-sm mb-2 relative z-10">({item.info})</p>
+                )}
+                {item.desc && <p className="text-text-muted relative z-10">{item.desc}</p>}
               </motion.div>
             ))}
           </div>
