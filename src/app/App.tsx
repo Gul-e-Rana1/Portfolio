@@ -18,7 +18,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   return (
-    <div className="bg-dark min-h-screen overflow-x-clip text-white font-sans selection:bg-accent-purple/30 selection:text-white cursor-none">
+    <div className="bg-dark min-h-screen overflow-x-clip text-fg font-sans selection:bg-accent-purple/30 selection:text-fg md:cursor-none">
       <CustomCursor />
       <Analytics />
       
