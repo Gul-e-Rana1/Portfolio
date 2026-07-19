@@ -1,17 +1,40 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
-  --color-dark: #090909;
+  --color-dark: var(--theme-bg);
+  --color-fg: var(--theme-fg);
   --color-accent-blue: #3b82f6;
   --color-accent-purple: #8b5cf6;
-  --color-surface: rgba(255, 255, 255, 0.03);
-  --color-surface-hover: rgba(255, 255, 255, 0.08);
-  --color-border: rgba(255, 255, 255, 0.1);
-  --color-text-muted: rgba(255, 255, 255, 0.6);
+  --color-surface: var(--theme-surface);
+  --color-surface-hover: var(--theme-surface-hover);
+  --color-border: var(--theme-border);
+  --color-text-muted: var(--theme-text-muted);
   --font-sans: 'Satoshi', sans-serif;
   --font-heading: 'General Sans', sans-serif;
-  
+
   --radius-xl: 24px;
+}
+
+:root {
+  --theme-bg: #fafafa;
+  --theme-fg: #0a0a0f;
+  --theme-surface: rgba(0, 0, 0, 0.03);
+  --theme-surface-hover: rgba(0, 0, 0, 0.06);
+  --theme-border: rgba(0, 0, 0, 0.1);
+  --theme-text-muted: rgba(10, 10, 15, 0.6);
+  --theme-grid-line: rgba(0, 0, 0, 0.04);
+}
+
+.dark {
+  --theme-bg: #090909;
+  --theme-fg: #ffffff;
+  --theme-surface: rgba(255, 255, 255, 0.03);
+  --theme-surface-hover: rgba(255, 255, 255, 0.08);
+  --theme-border: rgba(255, 255, 255, 0.1);
+  --theme-text-muted: rgba(255, 255, 255, 0.6);
+  --theme-grid-line: rgba(255, 255, 255, 0.025);
 }
 
 @layer base {
@@ -21,7 +44,7 @@
     overflow-x: clip;
   }
   body {
-    @apply bg-dark text-white font-sans antialiased overflow-x-hidden selection:bg-accent-purple/30 selection:text-white cursor-none;
+    @apply bg-dark text-fg font-sans antialiased overflow-x-hidden selection:bg-accent-purple/30 selection:text-fg md:cursor-none transition-colors duration-200;
     width: 100%;
   }
 
@@ -29,12 +52,12 @@
     width: 100%;
     overflow-x: clip;
   }
-  
+
   a, button, [role="button"] {
-    @apply cursor-none;
+    @apply md:cursor-none;
   }
 
-  
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading tracking-tight;
   }
@@ -62,8 +85,8 @@
   }
   .grid-pattern {
     background-image:
-      linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      linear-gradient(var(--theme-grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--theme-grid-line) 1px, transparent 1px);
     background-size: 64px 64px;
   }
   .section-num {
