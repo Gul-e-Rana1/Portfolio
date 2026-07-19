@@ -1,12 +1,14 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
+import { useTheme } from "../context/ThemeContext";
 
 const navItems = ["Projects", "Experience", "Skills", "Contact"];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -44,7 +46,7 @@ export function Navbar() {
               className="flex items-center"
               aria-label="Go to home"
             >
-              <img src="/logo.png" alt="Gul-e-Rana logo" className="h-12 w-12 object-contain" />
+              <img src="/logo.png" alt="Gul-e-Rana logo" className="h-12 w-12 object-contain invert dark:invert-0" />
             </button>
 
             <div className="hidden md:flex items-center space-x-1">
@@ -52,20 +54,41 @@ export function Navbar() {
                 <button
                   key={item}
                   onClick={() => scrollTo(item)}
-                  className="px-4 py-2 text-sm font-medium text-text-muted hover:text-white transition-colors rounded-full hover:bg-surface"
+                  className="px-4 py-2 text-sm font-medium text-text-muted hover:text-fg transition-colors rounded-full hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple"
                 >
                   {item}
                 </button>
               ))}
             </div>
 
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden p-2 glass rounded-xl text-white transition-colors hover:bg-surface-hover"
-              aria-label="Toggle menu"
-            >
-              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={toggleTheme}
+                aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+                className="relative p-2 glass rounded-xl text-fg transition-colors hover:bg-surface-hover overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple"
+              >
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={theme}
+                    initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
+                    animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                    exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
+                    transition={{ duration: 0.25, ease: "easeInOut" }}
+                    className="block"
+                  >
+                    {theme === "dark" ? <Moon size={20} /> : <Sun size={20} />}
+                  </motion.span>
+                </AnimatePresence>
+              </button>
+
+              <button
+                onClick={() => setMobileOpen(!mobileOpen)}
+                className="md:hidden p-2 glass rounded-xl text-fg transition-colors hover:bg-surface-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple"
+                aria-label="Toggle menu"
+              >
+                {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+              </button>
+            </div>
           </div>
         </div>
       </motion.nav>
@@ -81,7 +104,7 @@ export function Navbar() {
             className="fixed inset-0 z-40 bg-dark/98 backdrop-blur-2xl flex flex-col items-center justify-center"
           >
             <div className="mb-16">
-              <img src="/logo.png" alt="Gul-e-Rana logo" className="h-20 w-20 object-contain" />
+              <img src="/logo.png" alt="Gul-e-Rana logo" className="h-20 w-20 object-contain invert dark:invert-0" />
             </div>
             <nav className="flex flex-col items-center gap-1">
               {navItems.map((item, i) => (
@@ -92,7 +115,7 @@ export function Navbar() {
                   exit={{ opacity: 0, y: 10 }}
                   transition={{ delay: i * 0.05, duration: 0.3 }}
                   onClick={() => scrollTo(item)}
-                  className="px-8 py-3 text-2xl font-heading font-medium text-white/60 hover:text-white transition-colors"
+                  className="px-8 py-3 text-2xl font-heading font-medium text-fg/60 hover:text-fg transition-colors"
                 >
                   {item}
                 </motion.button>
