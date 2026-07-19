@@ -40,7 +40,7 @@ export function Contact() {
           transition={{ duration: 0.8 }}
           className="glass p-12 md:p-20 rounded-[3rem] relative overflow-hidden"
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-fg/5 to-transparent pointer-events-none" />
 
           <span className="section-num">09 — Contact</span>
 
@@ -57,11 +57,11 @@ export function Contact() {
 
           <a
             href="mailto:gulerana3205@gmail.com"
-            className="group relative inline-flex items-center justify-center gap-3 px-10 py-5 bg-white text-dark font-semibold rounded-full overflow-hidden transition-transform hover:scale-105 text-lg mb-16"
+            className="group relative inline-flex items-center justify-center gap-3 px-10 py-5 bg-fg text-dark font-semibold rounded-full overflow-hidden transition-transform hover:scale-105 text-lg mb-16"
           >
             <span className="relative z-10">Get In Touch</span>
             <ArrowUpRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            <div className="absolute inset-0 bg-gradient-to-r from-gray-200 to-white opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute inset-0 bg-gradient-to-r from-gray-800 to-black dark:from-gray-200 dark:to-white opacity-0 group-hover:opacity-100 transition-opacity" />
           </a>
 
           <div className="flex flex-wrap justify-center items-center gap-4">
@@ -72,7 +72,7 @@ export function Contact() {
                 target={link.target}
                 rel={link.target === "_blank" ? "noopener noreferrer" : undefined}
                 download={link.download || undefined}
-                className="flex items-center gap-2 px-6 py-3 rounded-full glass hover:bg-white hover:text-dark transition-all duration-300 font-medium"
+                className="flex items-center gap-2 px-6 py-3 rounded-full glass hover:bg-fg hover:text-dark transition-all duration-300 font-medium"
               >
                 <link.icon className="w-4 h-4" />
                 <span>{link.label}</span>
@@ -90,9 +90,9 @@ export function Footer() {
     <footer className="py-8 relative z-10 border-t border-border">
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white/80 font-medium">
+          <p className="text-fg/80 font-medium">
             Designed & Developed by{" "}
-            <span className="text-white font-bold tracking-wide">Gul-e-Rana</span>
+            <span className="text-fg font-bold tracking-wide">Gul-e-Rana</span>
           </p>
           <p className="text-text-muted text-sm">&copy; 2026 All Rights Reserved</p>
         </div>
