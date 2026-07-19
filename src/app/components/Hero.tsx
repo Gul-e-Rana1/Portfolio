@@ -1,5 +1,9 @@
 import { motion } from "motion/react";
 import { ArrowRight, Download } from "lucide-react";
+import { lazy, Suspense, useEffect, useState } from "react";
+import { useIsMobile } from "./ui/use-mobile";
+
+const HeroScene = lazy(() => import("./HeroScene"));
 
 const codeLines = [
   { text: "const developer = {", color: "text-accent-purple font-medium" },
@@ -24,6 +28,19 @@ const stats = [
 ];
 
 export function Hero() {
+  const isMobile = useIsMobile();
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(mql.matches);
+    const onChange = () => setReducedMotion(mql.matches);
+    mql.addEventListener("change", onChange);
+    return () => mql.removeEventListener("change", onChange);
+  }, []);
+
+  const show3D = !isMobile && !reducedMotion;
+
   const scrollToProjects = () =>
     document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
 
@@ -34,6 +51,13 @@ export function Hero() {
         <div className="bg-glow w-[600px] h-[600px] bg-accent-purple/20 top-[-100px] left-[-100px]" />
         <div className="bg-glow w-[500px] h-[500px] bg-accent-blue/20 bottom-[-100px] right-[-100px]" />
         <div className="absolute inset-0 grid-pattern opacity-20" />
+        {show3D && (
+          <div className="absolute right-[-8%] top-1/2 -translate-y-1/2 w-[550px] h-[550px] opacity-40">
+            <Suspense fallback={null}>
+              <HeroScene />
+            </Suspense>
+          </div>
+        )}
       </div>
 
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
@@ -48,7 +72,7 @@ export function Hero() {
           >
             <h1 className="text-5xl sm:text-6xl md:text-7xl xl:text-8xl font-bold leading-[1.05] tracking-tight">
               Hi, I'm <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-200 to-accent-purple text-glow">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-fg via-blue-500 dark:via-blue-200 to-accent-purple text-glow">
                 Gul-e-Rana
               </span>
             </h1>
@@ -60,7 +84,7 @@ export function Hero() {
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <button
                 onClick={scrollToProjects}
-                className="group flex items-center gap-2 px-8 py-4 bg-white text-dark font-semibold rounded-full transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.15)]"
+                className="group flex items-center gap-2 px-8 py-4 bg-fg text-dark font-semibold rounded-full transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(139,92,246,0.25)]"
               >
                 View Projects
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -69,7 +93,7 @@ export function Hero() {
               <a
                 href="/Gul-eRana-CV.pdf"
                 download="Gul-eRana-CV.pdf"
-                className="flex items-center gap-2 px-8 py-4 glass glass-hover rounded-full text-white font-medium transition-all hover:scale-105"
+                className="flex items-center gap-2 px-8 py-4 glass glass-hover rounded-full text-fg font-medium transition-all hover:scale-105"
               >
                 <Download className="w-4 h-4" />
                 Download Resume
@@ -90,7 +114,7 @@ export function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1 + i * 0.15 }}
                 >
-                  <div className="text-2xl font-bold font-heading text-white">{stat.value}</div>
+                  <div className="text-2xl font-bold font-heading text-fg">{stat.value}</div>
                   <div className="text-xs text-text-muted mt-1 tracking-widest uppercase">
                     {stat.label}
                   </div>
@@ -112,7 +136,7 @@ export function Hero() {
               {/* Terminal card */}
               <div className="relative glass rounded-3xl overflow-hidden shadow-2xl">
                 {/* Traffic lights header */}
-                <div className="flex items-center gap-1.5 px-5 py-4 border-b border-white/10 bg-white/5">
+                <div className="flex items-center gap-1.5 px-5 py-4 border-b border-fg/10 bg-fg/5">
                   <div className="w-3 h-3 rounded-full bg-red-500/60" />
                   <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
                   <div className="w-3 h-3 rounded-full bg-green-500/60" />
@@ -131,7 +155,7 @@ export function Hero() {
                       transition={{ duration: 0.35, delay: 0.9 + i * 0.12 }}
                       className="flex gap-5"
                     >
-                      <span className="text-white/20 select-none w-4 text-right shrink-0">
+                      <span className="text-fg/20 select-none w-4 text-right shrink-0">
                         {i + 1}
                       </span>
                       <span className={line.color}>{line.text}</span>
@@ -145,7 +169,7 @@ export function Hero() {
                     transition={{ delay: 1.85 }}
                     className="flex gap-5 mt-0.5"
                   >
-                    <span className="text-white/20 w-4 text-right shrink-0">7</span>
+                    <span className="text-fg/20 w-4 text-right shrink-0">7</span>
                     <motion.span
                       animate={{ opacity: [1, 1, 0, 0] }}
                       transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
