@@ -69,7 +69,7 @@ export function EducationAchievements() {
                   </div>
                   <div>
                     <h3 className="text-2xl md:text-3xl font-bold mb-2">{item.title}</h3>
-                    <p className="text-white/80 font-medium mb-2">{item.subtitle}</p>
+                    <p className="text-fg/80 font-medium mb-2">{item.subtitle}</p>
                     <p className="text-text-muted mb-2">{item.detail}</p>
                     {item.extra && <p className="text-text-muted">{item.extra}</p>}
                   </div>
@@ -103,7 +103,7 @@ export function EducationAchievements() {
                 className="glass glass-hover p-8 rounded-3xl group relative overflow-hidden"
               >
                 <div className="absolute -right-6 -top-6 w-24 h-24 bg-accent-purple/20 blur-2xl rounded-full group-hover:bg-accent-purple/40 transition-colors duration-500" />
-                <Award className="w-8 h-8 text-white/50 group-hover:text-accent-purple transition-colors mb-6 relative z-10" />
+                <Award className="w-8 h-8 text-fg/50 group-hover:text-accent-purple transition-colors mb-6 relative z-10" />
                 <h3 className="text-xl font-bold mb-3 relative z-10">{item.title}</h3>
                 {item.bullets && (
                   <ul className="text-text-muted relative z-10 space-y-1 list-disc list-inside">
@@ -113,7 +113,7 @@ export function EducationAchievements() {
                   </ul>
                 )}
                 {item.info && (
-                  <p className="text-white/70 italic text-sm mb-2 relative z-10">({item.info})</p>
+                  <p className="text-fg/70 italic text-sm mb-2 relative z-10">({item.info})</p>
                 )}
                 {item.desc && <p className="text-text-muted relative z-10">{item.desc}</p>}
               </motion.div>

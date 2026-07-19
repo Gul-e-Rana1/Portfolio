@@ -59,10 +59,10 @@ export function Process() {
               transition={{ duration: 0.5, delay: idx * 0.2 }}
               className="relative z-10"
             >
-              <div className="w-24 h-24 rounded-full glass flex items-center justify-center text-3xl font-heading font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/40 mb-8 mx-auto lg:mx-0 shadow-[0_0_30px_rgba(255,255,255,0.05)] border-white/20 relative">
+              <div className="w-24 h-24 rounded-full glass flex items-center justify-center text-3xl font-heading font-bold text-transparent bg-clip-text bg-gradient-to-br from-fg to-fg/40 mb-8 mx-auto lg:mx-0 shadow-[0_0_30px_rgba(139,92,246,0.1)] border-fg/20 relative">
                 {step.num}
                 {/* Glow ring */}
-                <div className="absolute inset-0 rounded-full border border-white/10 scale-[1.15]" />
+                <div className="absolute inset-0 rounded-full border border-fg/10 scale-[1.15]" />
               </div>
               
               <div className="text-center lg:text-left glass glass-hover p-8 rounded-3xl h-[calc(100%-8rem)]">
