@@ -82,7 +82,7 @@ export function Skills() {
 
               <div className="flex items-start justify-between mb-6 relative z-10">
                 <h3
-                  className="text-2xl font-semibold text-white/90"
+                  className="text-2xl font-semibold text-fg/90"
                   style={{ textShadow: `0 0 20px ${skillGroup.color}30` }}
                 >
                   {skillGroup.category}
@@ -94,7 +94,7 @@ export function Skills() {
                 {skillGroup.items.map((item, i) => (
                   <span
                     key={i}
-                    className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium transition-colors cursor-default"
+                    className="px-4 py-2 rounded-full bg-fg/5 border border-fg/10 text-sm font-medium transition-colors cursor-default"
                     onMouseEnter={(e) => {
                       (e.currentTarget as HTMLElement).style.background = `${skillGroup.color}18`;
                       (e.currentTarget as HTMLElement).style.borderColor = `${skillGroup.color}50`;

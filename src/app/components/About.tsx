@@ -52,7 +52,7 @@ export function About() {
                   className="relative pl-12 group"
                 >
                   <div className="absolute left-[11px] top-1 w-2.5 h-2.5 rounded-full bg-accent-purple shadow-[0_0_10px_rgba(139,92,246,0.8)] group-hover:scale-150 transition-transform duration-300" />
-                  <h3 className="text-xl font-medium text-white/90 group-hover:text-white transition-colors">{item}</h3>
+                  <h3 className="text-xl font-medium text-fg/90 group-hover:text-fg transition-colors">{item}</h3>
                 </motion.div>
               ))}
             </div>
