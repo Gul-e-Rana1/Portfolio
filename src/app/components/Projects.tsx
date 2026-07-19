@@ -106,7 +106,7 @@ export function Projects() {
               </div>
 
               <div className="w-full lg:w-2/5 space-y-6">
-                <h3 className="text-3xl font-bold text-white group-hover:text-glow transition-all">{project.title}</h3>
+                <h3 className="text-3xl font-bold text-fg group-hover:text-glow transition-all">{project.title}</h3>
                 <p className="text-text-muted text-lg leading-relaxed">
                   {project.description}
                 </p>
@@ -126,13 +126,13 @@ export function Projects() {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="flex items-center gap-2 px-5 py-2.5 rounded-full glass hover:bg-white hover:text-dark transition-colors font-medium"
+                        className="flex items-center gap-2 px-5 py-2.5 rounded-full glass hover:bg-fg hover:text-dark transition-colors font-medium"
                       >
                         <ExternalLink className="w-4 h-4" />
                         <span>Live Demo</span>
                       </a>
                       ) : (
-                        <button className="flex items-center gap-2 px-5 py-2.5 rounded-full glass hover:bg-white hover:text-dark transition-colors font-medium">
+                        <button className="flex items-center gap-2 px-5 py-2.5 rounded-full glass hover:bg-fg hover:text-dark transition-colors font-medium">
                           <ExternalLink className="w-4 h-4" />
                           <span>Live Demo</span>
                         </button>
@@ -144,13 +144,13 @@ export function Projects() {
                           href={project.githubUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="flex items-center gap-2 px-5 py-2.5 rounded-full text-text-muted hover:text-white transition-colors"
+                          className="flex items-center gap-2 px-5 py-2.5 rounded-full text-text-muted hover:text-fg transition-colors"
                         >
                           <Github className="w-5 h-5" />
                           <span>GitHub</span>
                         </a>
                       ) : (
-                        <button className="flex items-center gap-2 px-5 py-2.5 rounded-full text-text-muted hover:text-white transition-colors">
+                        <button className="flex items-center gap-2 px-5 py-2.5 rounded-full text-text-muted hover:text-fg transition-colors">
                           <Github className="w-5 h-5" />
                           <span>GitHub</span>
                         </button>

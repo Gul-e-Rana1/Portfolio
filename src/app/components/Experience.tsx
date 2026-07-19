@@ -63,7 +63,7 @@ export function Experience() {
                   <h3 className="text-2xl font-bold mb-1 group-hover:text-glow transition-all">
                     {exp.title}
                   </h3>
-                  <h4 className="text-white/60 font-medium mb-4">{exp.company}</h4>
+                  <h4 className="text-fg/60 font-medium mb-4">{exp.company}</h4>
                   <p className="text-text-muted leading-relaxed">
                     {exp.description}
                   </p>
