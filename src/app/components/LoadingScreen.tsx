@@ -42,9 +42,12 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
           initial={{ opacity: 0, scale: 0.4 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.55, type: "spring", stiffness: 220, damping: 18 }}
-          className="text-5xl font-heading font-bold tracking-tighter"
         >
-          G<span className="text-accent-purple">R</span>.
+          <img
+            src="/logo.png"
+            alt="Gul-e-Rana logo"
+            className="h-16 w-16 sm:h-20 sm:w-20 object-contain invert dark:invert-0"
+          />
         </motion.div>
 
         {/* Percentage counter */}
@@ -52,7 +55,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25, duration: 0.4 }}
-          className="text-7xl md:text-8xl font-heading font-bold text-white tabular-nums leading-none"
+          className="text-7xl md:text-8xl font-heading font-bold text-fg tabular-nums leading-none"
         >
           {Math.round(progress)}
           <span className="text-accent-purple text-5xl ml-1">%</span>
@@ -63,7 +66,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.4 }}
-          className="w-48 h-px bg-white/10 rounded-full overflow-hidden"
+          className="w-48 h-px bg-fg/10 rounded-full overflow-hidden"
         >
           <div
             className="h-full bg-gradient-to-r from-accent-purple to-accent-blue rounded-full transition-all duration-75"
@@ -76,7 +79,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.45 }}
           transition={{ delay: 0.5 }}
-          className="text-xs tracking-[0.35em] uppercase font-medium text-white"
+          className="text-xs tracking-[0.35em] uppercase font-medium text-fg"
         >
           Loading Portfolio
         </motion.p>
