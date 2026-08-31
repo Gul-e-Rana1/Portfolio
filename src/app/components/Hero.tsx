@@ -78,7 +78,7 @@ export function Hero() {
             </h1>
 
             <p className="text-base sm:text-lg md:text-xl text-text-muted max-w-lg leading-relaxed">
-              Full Stack Developer & AI/ML Enthusiast crafting modern, scalable, and intelligent digital solutions with a focus on performance, user experience, and real-world impact.
+              I'm a Software Engineer & Full Stack Developer who genuinely enjoys turning ideas into working code — from React interfaces to Python/Flask backends and everything in between. Always up for learning something new, solving a tricky bug or building something that actually makes life easier. Let's build something cool together!
             </p>
 
             <div className="flex flex-wrap items-center gap-4 pt-2">

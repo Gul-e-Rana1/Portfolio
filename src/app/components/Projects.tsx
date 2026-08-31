@@ -15,6 +15,14 @@ type Project = {
 
 const projects: Project[] = [
   {
+    title: "ResQ AI",
+    description: "An AI-powered disaster and emergency response platform built with Next.js and Supabase, enabling role-based coordination between admins, camp managers, and relief seekers during crises.",
+    tech: ["Next.js", "Supabase", "TypeScript", "React Query", "AI/ML"],
+    image: "/Resq AI.png",
+    githubUrl: "https://github.com/Gul-e-Rana1/ResQ-AI",
+    liveUrl: "https://res-q-ai-xi.vercel.app/"
+  },
+  {
     title: "Deep Fake Detection System (FYP)",
     description: "An AI-powered deepfake detection platform developed using React.js, Flask, and MySQL to identify manipulated facial media.",
     tech: ["React.js", "Flask", "MySQL", "Python", "AI/ML", "QA"],
