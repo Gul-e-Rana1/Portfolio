@@ -23,15 +23,3 @@ The portfolio is a responsive frontend website with a modern UI, animated sectio
 - Motion
 - Lucide React
 
-## Run Locally
-
-```bash
-pnpm install
-npm run dev
-```
-
-Open the site in your browser:
-
-```text
-http://localhost:5173/
-```
