@@ -70,7 +70,7 @@ export function Hero() {
             transition={{ duration: 1, delay: 0.2 }}
             className="space-y-8"
           >
-            <h1 className="text-5xl sm:text-6xl md:text-7xl xl:text-8xl font-bold leading-[1.05] tracking-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-bold leading-[1.0] tracking-tight">
               Hi, I'm <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-fg via-blue-500 dark:via-blue-200 to-accent-purple text-glow">
                 Gul-e-Rana
@@ -78,7 +78,7 @@ export function Hero() {
             </h1>
 
             <p className="text-base sm:text-lg md:text-xl text-text-muted max-w-lg leading-relaxed">
-              I'm a Software Engineer & Full Stack Developer who genuinely enjoys turning ideas into working code — from React interfaces to Python/Flask backends and everything in between. Always up for learning something new, solving a tricky bug or building something that actually makes life easier. Let's build something cool together!
+              A Software Engineer & Full Stack Developer who genuinely enjoys turning ideas into working code — from React interfaces to Python/Flask backends and everything in between. Always up for learning something new, solving a tricky bug or building something that actually makes life easier. Let's build something cool together!
             </p>
 
             <div className="flex flex-wrap items-center gap-4 pt-2">
