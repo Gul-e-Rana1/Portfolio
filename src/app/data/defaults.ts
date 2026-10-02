@@ -16,7 +16,7 @@ export const defaultContent: Content = {
     },
     contact: {
       email: "gulerana3205@gmail.com",
-      linkedin: "https://linkedin.com/in/gul-e-rana-02734331a",
+      linkedin: "https://linkedin.com/in/gul-e-rana",
       github: "https://github.com/Gul-e-Rana1",
       resume_url: "/Gul-eRana-CV.pdf",
       available: true,
