@@ -4,6 +4,7 @@ import { DatabaseZap, Eye, MousePointerClick, Monitor, Globe, Users, CalendarDay
 import { supabase } from "../app/lib/supabase";
 import { defaultContent } from "../app/data/defaults";
 import { contentTables } from "../app/data/types";
+import { collections } from "./schemas";
 import { Button, Card, PageHeader, Spinner, toast } from "./ui";
 
 type Analytics = {
@@ -23,22 +24,43 @@ function formatDay(day: string) {
   return new Date(day + "T00:00:00").toLocaleDateString("en-GB", { day: "numeric", month: "short" });
 }
 
-/** Copies the built-in content into empty tables so it can be edited here. */
+const contentKeys = Object.keys(contentTables) as (keyof typeof contentTables)[];
+
+/** Names of sections whose table has no rows yet (plus "Site content" if settings are missing). */
+async function findEmptySections(): Promise<string[]> {
+  const empty: string[] = [];
+  const { data: settings } = await supabase.from("site_settings").select("id").eq("id", 1).maybeSingle();
+  if (!settings) empty.push("Site content");
+  const counts = await Promise.all(
+    contentKeys.map((k) => supabase.from(contentTables[k]).select("id", { count: "exact", head: true })),
+  );
+  counts.forEach((res, i) => {
+    if (!res.error && !res.count) empty.push(collections[contentKeys[i]].label);
+  });
+  return empty;
+}
+
+/**
+ * Copies the built-in content into empty tables only — existing rows and
+ * already-saved site settings are never overwritten.
+ */
 async function importDefaults() {
-  const keys = Object.keys(contentTables) as (keyof typeof contentTables)[];
-  for (const key of keys) {
+  for (const key of contentKeys) {
     const table = contentTables[key];
     const { count, error: countErr } = await supabase.from(table).select("id", { count: "exact", head: true });
     if (countErr) throw countErr;
-    if (count) continue; // never duplicate rows that already exist
+    if (count) continue;
     const rows = (defaultContent[key] as { id: string }[]).map(({ id: _id, ...row }, i) => ({ ...row, sort_order: i, visible: true }));
     const { error } = await supabase.from(table).insert(rows);
     if (error) throw new Error(`${table}: ${error.message}`);
   }
-  const { error } = await supabase
-    .from("site_settings")
-    .upsert({ id: 1, data: defaultContent.settings, updated_at: new Date().toISOString() });
-  if (error) throw error;
+  const { data: existing } = await supabase.from("site_settings").select("id").eq("id", 1).maybeSingle();
+  if (!existing) {
+    const { error } = await supabase
+      .from("site_settings")
+      .insert({ id: 1, data: defaultContent.settings, updated_at: new Date().toISOString() });
+    if (error) throw error;
+  }
 }
 
 function Kpi({ icon: Icon, label, value }: { icon: typeof Eye; label: string; value: number | string }) {
@@ -98,11 +120,11 @@ export function Overview() {
   const [days, setDays] = useState<(typeof ranges)[number]>(30);
   const [data, setData] = useState<Analytics | null>(null);
   const [loading, setLoading] = useState(true);
-  const [seeded, setSeeded] = useState<boolean | null>(null);
+  const [emptySections, setEmptySections] = useState<string[]>([]);
   const [importing, setImporting] = useState(false);
 
   useEffect(() => {
-    supabase.from("site_settings").select("id").eq("id", 1).maybeSingle().then(({ data }) => setSeeded(!!data));
+    findEmptySections().then(setEmptySections);
   }, []);
 
   useEffect(() => {
@@ -115,11 +137,11 @@ export function Overview() {
   }, [days]);
 
   const runImport = async () => {
-    if (!confirm("Copy the current website content into the database so you can edit it here?")) return;
+    if (!confirm(`Fill these empty sections with the built-in content?\n\n${emptySections.join(", ")}\n\nNothing you have already saved will be changed.`)) return;
     setImporting(true);
     try {
       await importDefaults();
-      setSeeded(true);
+      setEmptySections(await findEmptySections());
       toast("Content imported — you can now edit everything from the sidebar");
     } catch (err) {
       toast(`Import failed: ${(err as Error).message}`, "error");
@@ -150,15 +172,16 @@ export function Overview() {
         }
       />
 
-      {seeded === false && (
+      {emptySections.length > 0 && (
         <Card className="p-6 mb-6 border-accent-blue/30 flex flex-col sm:flex-row sm:items-center gap-5">
           <div className="w-11 h-11 rounded-xl bg-accent-blue/10 border border-accent-blue/25 flex items-center justify-center shrink-0">
             <DatabaseZap className="w-5 h-5 text-accent-blue" />
           </div>
           <div className="flex-1">
-            <h2 className="font-semibold">Import your current content</h2>
+            <h2 className="font-semibold">Import built-in content</h2>
             <p className="text-sm text-text-muted mt-1">
-              Your database is empty, so the site is showing its built-in content. Import it once to start editing from this panel.
+              These sections are empty on your website: <span className="text-fg/90">{emptySections.join(", ")}</span>.
+              Import the built-in content to fill them — anything you've already saved stays as it is.
             </p>
           </div>
           <Button variant="primary" onClick={runImport} loading={importing}>Import content</Button>
