@@ -21,37 +21,34 @@ export function Hero() {
       </div>
 
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-20 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center min-h-[85vh]">
 
-          {/* ── Left: Headline ─────────────────────── */}
-          <div>
-            <motion.span
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.1, ease }}
-              className="eyebrow"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-accent-teal shadow-[0_0_8px_rgba(110,231,210,0.9)]" />
-              {hero.eyebrow}
-            </motion.span>
+          {/* ── Left: Content ─────────────────────────────── */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="space-y-8"
+          >
+            <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-bold leading-[1.0] tracking-tight">
+              Hi, I'm <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-fg via-blue-500 dark:via-blue-200 to-accent-purple text-glow">
+                Gul-e-Rana
+              </span>
+            </h1>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.1, delay: 0.2, ease }}
-              className="mt-8 text-[2.75rem] leading-[1.02] sm:text-6xl md:text-7xl xl:text-[5.25rem] font-semibold tracking-[-0.035em]"
-            >
-              <GradientTitle title={hero.title} highlight={hero.highlight} />
-            </motion.h1>
+            <p className="text-base sm:text-lg md:text-xl text-text-muted max-w-lg leading-relaxed">
+              A Software Engineer & Full Stack Developer who genuinely enjoys turning ideas into working code — from React interfaces to Python/Flask backends and everything in between. Always up for learning something new, solving a tricky bug or building something that actually makes life easier. Let's build something cool together!
+            </p>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.4, ease }}
-              className="mt-8 text-base sm:text-lg text-text-muted max-w-md leading-relaxed"
-            >
-              {hero.description}
-            </motion.p>
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <button
+                onClick={scrollToProjects}
+                className="group flex items-center gap-2 px-8 py-4 bg-fg text-dark font-semibold rounded-full transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(139,92,246,0.25)]"
+              >
+                View Projects
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
