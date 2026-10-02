@@ -1,173 +1,110 @@
 import { motion } from "motion/react";
-import { Github, ExternalLink } from "lucide-react";
+import { Github, ArrowUpRight, Sparkles } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { SectionHeading } from "./SectionHeading";
+import { useContent } from "../content/ContentContext";
+import type { Project } from "../data/types";
 
-type Project = {
-  title: string;
-  description: string;
-  tech: string[];
-  image: string;
-  hasLinks?: boolean;
-  liveUrl?: string;
-  githubUrl?: string;
-  isPlaceholder?: boolean;
-};
 
-const projects: Project[] = [
-  {
-    title: "ResQ AI",
-    description: "An AI-powered disaster and emergency response platform built with Next.js and Supabase, enabling role-based coordination between admins, camp managers, and relief seekers during crises.",
-    tech: ["Next.js", "Supabase", "TypeScript", "React Query", "AI/ML"],
-    image: "/Resq AI.png",
-    githubUrl: "https://github.com/Gul-e-Rana1/ResQ-AI",
-    liveUrl: "https://res-q-ai-xi.vercel.app/"
-  },
-  {
-    title: "Deep Fake Detection System (FYP)",
-    description: "An AI-powered deepfake detection platform developed using React.js, Flask, and MySQL to identify manipulated facial media.",
-    tech: ["React.js", "Flask", "MySQL", "Python", "AI/ML", "QA"],
-    image: "https://images.unsplash.com/photo-1696272440000-0808a203c852?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlJTIwZGVlcGZha2UlMjBmYWNlJTIwbWVzaCUyMHRlY2hub2xvZ3l8ZW58MXx8fHwxNzgyNzM3MTI4fDA&ixlib=rb-4.1.0&q=80&w=1080",
-    githubUrl: "https://github.com/Gul-e-Rana1/DFD"
-  },
-  {
-    title: "SlackBot Platform",
-    description: "A modern AI-powered SlackBot interface developed with responsive UI components, seamless API integration, and an optimized user experience for workplace automation.",
-    tech: ["React", "Tailwind CSS", "REST APIs", "Responsive UI", "QA"],
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjByZXNwb25zaXZlJTIwZGFzaGJvYXJkJTIwdWklMjB3ZWIlMjBkZXNpZ258ZW58MXx8fHwxNzgyNzM3MTI4fDA&ixlib=rb-4.1.0&q=80&w=1080",
-    liveUrl: "https://app.meta360.dev/"
-  },
-  {
-    title: "Handwritten Digit Recognition",
-    description: "An AI-powered computer vision application that identifies handwritten digits from uploaded images using a custom-trained deep learning model. Developed as a one-page Streamlit application with complete model training, integration, and real-time inference.",
-    tech: ["Python", "Computer Vision", "Deep Learning", "Streamlit", "QA"],
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080",
-    githubUrl: "https://github.com/Gul-e-Rana1/Digit_Recognition"
-  },
-  {
-    title: "Envoice",
-    description: "A scalable invoicing and business management platform featuring responsive interfaces, reusable components, and efficient frontend architecture for a seamless user experience.",
-    tech: ["React", "Ant Design", "Laravel", "Tailwind CSS", "QA"],
-    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080"
-  },
-  {
-    title: "Personal Portfolio",
-    description: "A premium animated portfolio built with React, Framer Motion, and modern web technologies to showcase professional work.",
-    tech: ["React", "Framer Motion", "Tailwind CSS", "Design System", "QA"],
-    image: "https://images.unsplash.com/photo-1559028012-481c04fa702d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcmVhdGl2ZSUyMGNvZGluZyUyMGFuaW1hdGlvbiUyMHBvcnRmb2xpbyUyMHdlYiUyMGRldmVsb3BtZW50fGVufDF8fHx8MTc4MjczNzEyOHww&ixlib=rb-4.1.0&q=80&w=1080",
-    liveUrl: "https://gul-e-rana.vercel.app",
-    githubUrl: "https://github.com/Gul-e-Rana1/Portfolio"
-  },
-  {
-    title: "Upcoming Project",
-    description: "Currently ideating and developing a new scalable digital solution. Stay tuned for updates on this space.",
-    tech: ["Innovation", "Research", "Development", "QA"],
-    image: "",
-    isPlaceholder: true
-  }
-];
+function ProjectLinks({ project }: { project: Project }) {
+  if (!project.live_url && !project.github_url) return null;
+  return (
+    <div className="flex items-center gap-2">
+      {project.live_url && (
+        <a
+          href={project.live_url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-medium border border-border bg-surface hover:border-accent-blue/30 hover:bg-surface-hover transition-all duration-300"
+        >
+          Live <ArrowUpRight className="w-3.5 h-3.5" />
+        </a>
+      )}
+      {project.github_url && (
+        <a
+          href={project.github_url}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${project.title} on GitHub`}
+          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-medium text-text-muted hover:text-fg transition-colors duration-300"
+        >
+          <Github className="w-3.5 h-3.5" /> Code
+        </a>
+      )}
+    </div>
+  );
+}
+
+function ProjectCard({ project, featured, index }: { project: Project; featured?: boolean; index: number }) {
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.9, delay: (index % 2) * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      className={`glass glass-hover rounded-3xl p-3 group flex flex-col ${
+        featured ? "lg:col-span-2 lg:grid lg:grid-cols-[1.4fr_1fr] lg:gap-4" : ""
+      }`}
+    >
+      {/* Media */}
+      <div className={`relative overflow-hidden rounded-2xl ${featured ? "aspect-[16/10] lg:aspect-auto lg:min-h-[380px]" : "aspect-[16/10]"}`}>
+        {project.is_placeholder ? (
+          <div className="absolute inset-0 flex items-center justify-center bg-[radial-gradient(ellipse_at_center,rgba(122,162,255,0.12),transparent_70%)]">
+            <div className="absolute inset-0 grid-pattern" />
+            <div className="relative w-16 h-16 rounded-2xl glass flex items-center justify-center animate-pulse-glow">
+              <Sparkles className="w-6 h-6 text-accent-silver" strokeWidth={1.5} />
+            </div>
+          </div>
+        ) : (
+          <>
+            <ImageWithFallback
+              src={project.image_url}
+              alt={project.title}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.04]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/10 to-transparent" />
+            <div className="absolute inset-0 bg-accent-blue/10 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-700" />
+          </>
+        )}
+        <span className="pill absolute top-4 left-4 backdrop-blur-md bg-dark/40">
+          <span className={`w-1.5 h-1.5 rounded-full ${project.status === "Live" ? "bg-accent-teal" : "bg-accent-blue"}`} />
+          {project.status}
+        </span>
+      </div>
+
+      {/* Body */}
+      <div className={`flex flex-col flex-1 p-4 ${featured ? "lg:p-8 lg:justify-center" : "pt-6"}`}>
+        <p className="text-[11px] uppercase tracking-[0.2em] text-accent-blue/80 mb-3">{project.category}</p>
+        <h3 className={`${featured ? "text-3xl md:text-4xl" : "text-2xl"} font-semibold tracking-tight mb-3`}>
+          {project.title}
+        </h3>
+        <p className="text-text-muted leading-relaxed text-[15px] mb-6">{project.description}</p>
+        <div className="flex flex-wrap gap-1.5 mb-6">
+          {project.tech.map((t) => (
+            <span key={t} className="text-[11px] px-2.5 py-1 rounded-md border border-border bg-fg/[0.02] text-fg/70">
+              {t}
+            </span>
+          ))}
+        </div>
+        <div className="mt-auto">
+          <ProjectLinks project={project} />
+        </div>
+      </div>
+    </motion.article>
+  );
+}
 
 export function Projects() {
+  const { settings, projects } = useContent();
   return (
-    <section id="projects" className="py-32 relative">
-      <div className="container mx-auto px-6 max-w-7xl">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-20"
-        >
-          <span className="section-num">03 — Work</span>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">Featured Projects</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-accent-purple to-accent-blue rounded-full" />
-        </motion.div>
+    <section id="work" className="py-28 md:py-36 relative">
+      <div className="bg-glow w-[700px] h-[700px] bg-accent-purple/[0.06] top-40 -left-60" />
+      <div className="container mx-auto px-6 max-w-7xl relative">
+        <SectionHeading copy={settings.sections.work} />
 
-        <div className="space-y-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-5">
           {projects.map((project, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-              className={`flex flex-col ${idx % 2 !== 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 items-center`}
-            >
-              <div className="w-full lg:w-3/5 group">
-                <div className={`relative aspect-video rounded-3xl overflow-hidden glass p-2 ${project.isPlaceholder ? 'flex items-center justify-center bg-surface/50' : ''}`}>
-                  {project.isPlaceholder ? (
-                    <div className="text-center text-text-muted">
-                      <div className="w-16 h-16 rounded-full border border-border mx-auto mb-4 flex items-center justify-center animate-pulse">
-                        <span className="text-2xl">✨</span>
-                      </div>
-                      <p className="font-medium tracking-widest uppercase text-sm">Coming Soon</p>
-                    </div>
-                  ) : (
-                    <>
-                      <div className="absolute inset-0 bg-accent-purple/10 mix-blend-overlay z-10 group-hover:bg-transparent transition-colors duration-500" />
-                      <ImageWithFallback
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover rounded-[20px] group-hover:scale-105 transition-transform duration-700"
-                      />
-                    </>
-                  )}
-                </div>
-              </div>
-
-              <div className="w-full lg:w-2/5 space-y-6">
-                <h3 className="text-3xl font-bold text-fg group-hover:text-glow transition-all">{project.title}</h3>
-                <p className="text-text-muted text-lg leading-relaxed">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2 pt-2">
-                  {project.tech.map((t, i) => (
-                    <span key={i} className="text-xs font-medium uppercase tracking-wider text-accent-blue/80 bg-accent-blue/10 px-3 py-1 rounded-full border border-accent-blue/20">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-                
-                {(project.hasLinks || project.liveUrl || project.githubUrl) && (
-                  <div className="flex flex-wrap items-center gap-4 pt-6">
-                    {(project.liveUrl || project.hasLinks) && (
-                      project.liveUrl ? (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flex items-center gap-2 px-5 py-2.5 rounded-full glass hover:bg-fg hover:text-dark transition-colors font-medium"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                        <span>Live Demo</span>
-                      </a>
-                      ) : (
-                        <button className="flex items-center gap-2 px-5 py-2.5 rounded-full glass hover:bg-fg hover:text-dark transition-colors font-medium">
-                          <ExternalLink className="w-4 h-4" />
-                          <span>Live Demo</span>
-                        </button>
-                      )
-                    )}
-                    {(project.githubUrl || project.hasLinks) && (
-                      project.githubUrl ? (
-                        <a
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="flex items-center gap-2 px-5 py-2.5 rounded-full text-text-muted hover:text-fg transition-colors"
-                        >
-                          <Github className="w-5 h-5" />
-                          <span>GitHub</span>
-                        </a>
-                      ) : (
-                        <button className="flex items-center gap-2 px-5 py-2.5 rounded-full text-text-muted hover:text-fg transition-colors">
-                          <Github className="w-5 h-5" />
-                          <span>GitHub</span>
-                        </button>
-                      )
-                    )}
-                  </div>
-                )}
-              </div>
-            </motion.div>
+            <ProjectCard key={project.id} project={project} featured={project.featured} index={idx} />
           ))}
         </div>
       </div>

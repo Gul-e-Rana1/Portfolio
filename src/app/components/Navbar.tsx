@@ -1,18 +1,25 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useEffect, useState } from "react";
-import { Menu, X, Sun, Moon } from "lucide-react";
-import { useTheme } from "../context/ThemeContext";
+import { Menu, X, ArrowUpRight } from "lucide-react";
+import { useContent } from "../content/ContentContext";
 
-const navItems = ["Projects", "Experience", "Skills", "Contact"];
+const navItems = [
+  { label: "Work", id: "work" },
+  { label: "Skills", id: "skills" },
+  { label: "Experience", id: "experience" },
+  { label: "Process", id: "process" },
+  { label: "Contact", id: "contact" },
+];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
+  const mailto = `mailto:${useContent().settings.contact.email}`;
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 40);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -22,71 +29,55 @@ export function Navbar() {
   }, [mobileOpen]);
 
   const scrollTo = (id: string) => {
-    const el = document.getElementById(id.toLowerCase());
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setMobileOpen(false);
   };
 
   return (
     <>
       <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-3xl bg-slate-950/10 ${
-          scrolled ? "py-2" : "py-3"
-        }`}
+        initial={{ y: -40, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        className="fixed top-0 left-0 right-0 z-50 pt-4"
       >
-        <div className="container mx-auto px-6 max-w-7xl">
-          <div className={`flex items-center justify-between rounded-full px-6 py-2 transition-all duration-300 ${
-            scrolled ? "glass" : "bg-transparent"
-          }`}>
-            <button
-              onClick={() => scrollTo("Home")}
-              className="flex items-center"
-              aria-label="Go to home"
-            >
-              <img src="/logo.png" alt="Gul-e-Rana logo" className="h-12 w-12 object-contain invert dark:invert-0" />
+        <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
+          <div
+            className={`flex items-center justify-between rounded-2xl pl-3 pr-2 py-2 transition-all duration-500 ${
+              scrolled ? "glass" : "border border-transparent"
+            }`}
+          >
+            <button onClick={() => scrollTo("home")} className="flex items-center gap-2.5" aria-label="Go to home">
+              <img src="/logo.png" alt="Gul-e-Rana logo" className="h-9 w-9 object-contain" />
+              <span className="hidden sm:block font-heading font-semibold tracking-tight">Gul-e-Rana</span>
             </button>
 
-            <div className="hidden md:flex items-center space-x-1">
+            <div className="hidden md:flex items-center gap-1">
               {navItems.map((item) => (
                 <button
-                  key={item}
-                  onClick={() => scrollTo(item)}
-                  className="px-4 py-2 text-sm font-medium text-text-muted hover:text-fg transition-colors rounded-full hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple"
+                  key={item.id}
+                  onClick={() => scrollTo(item.id)}
+                  className="px-4 py-2 text-sm text-text-muted hover:text-fg transition-colors duration-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue/50"
                 >
-                  {item}
+                  {item.label}
                 </button>
               ))}
             </div>
 
             <div className="flex items-center gap-2">
-              <button
-                onClick={toggleTheme}
-                aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-                className="relative p-2 glass rounded-xl text-fg transition-colors hover:bg-surface-hover overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple"
+              <a
+                href={mailto}
+                className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold text-dark bg-gradient-to-b from-white to-[#d6deec] shadow-[0_0_0_1px_rgba(255,255,255,0.3),0_8px_24px_-10px_rgba(122,162,255,0.6)] hover:-translate-y-0.5 transition-all duration-500"
               >
-                <AnimatePresence mode="wait" initial={false}>
-                  <motion.span
-                    key={theme}
-                    initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
-                    animate={{ rotate: 0, opacity: 1, scale: 1 }}
-                    exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
-                    transition={{ duration: 0.25, ease: "easeInOut" }}
-                    className="block"
-                  >
-                    {theme === "dark" ? <Moon size={20} /> : <Sun size={20} />}
-                  </motion.span>
-                </AnimatePresence>
-              </button>
-
+                Let's Talk
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
-                className="md:hidden p-2 glass rounded-xl text-fg transition-colors hover:bg-surface-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple"
+                className="md:hidden p-2.5 glass rounded-xl text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue/50"
                 aria-label="Toggle menu"
               >
-                {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+                {mobileOpen ? <X size={18} /> : <Menu size={18} />}
               </button>
             </div>
           </div>
@@ -100,27 +91,27 @@ export function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-40 bg-dark/98 backdrop-blur-2xl flex flex-col items-center justify-center"
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-40 bg-dark/95 backdrop-blur-2xl flex flex-col items-center justify-center"
           >
-            <div className="mb-16">
-              <img src="/logo.png" alt="Gul-e-Rana logo" className="h-20 w-20 object-contain invert dark:invert-0" />
-            </div>
             <nav className="flex flex-col items-center gap-1">
               {navItems.map((item, i) => (
                 <motion.button
-                  key={item}
-                  initial={{ opacity: 0, y: 20 }}
+                  key={item.id}
+                  initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ delay: i * 0.05, duration: 0.3 }}
-                  onClick={() => scrollTo(item)}
-                  className="px-8 py-3 text-2xl font-heading font-medium text-fg/60 hover:text-fg transition-colors"
+                  exit={{ opacity: 0, y: 8 }}
+                  transition={{ delay: i * 0.05, duration: 0.4 }}
+                  onClick={() => scrollTo(item.id)}
+                  className="px-8 py-3 text-3xl font-heading font-medium text-fg/60 hover:text-fg transition-colors"
                 >
-                  {item}
+                  {item.label}
                 </motion.button>
               ))}
             </nav>
+            <a href={mailto} className="btn-primary mt-12">
+              Let's Talk <ArrowUpRight className="w-4 h-4" />
+            </a>
           </motion.div>
         )}
       </AnimatePresence>
